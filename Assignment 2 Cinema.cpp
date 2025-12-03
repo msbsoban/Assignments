@@ -1,50 +1,47 @@
 #include <iostream>
 using namespace std;
-char cinema[3][4] = {
-    {'F', 'F', 'F', 'F'},
-    {'F', 'F', 'F', 'F'},
-    {'F', 'F', 'F', 'F'}
-};
-void menu(){
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 4; j++) {
+int main() {
+    cout << "Enter rows and columns"<< endl;
+    int rows, col;
+    cin >> rows;
+    cin >> col;
+    char cinema[rows] [col];
+    for (int i = 0; i < col; i++){
+        for (int j = 0; j < rows; j++){
+            cinema [i][j] = 'F';
+        }
+    }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < col; j++) {
             cout << "(" << (i + 1) << "-" << (j + 1) << " " << cinema[i][j] << ") ";
         }
         cout << endl;
     }
-}
-void booking(){
-    int row, col;
+
     while(true){
-        cout << "To reserve a seat, please enter the Row (1-3) and Column (1-4) OR press 0 0 to Exit: ";
-        cin >> row >> col;
-        if (row == 0 || col == 0) {
-        break;
+        cout << "To reserve a seat, please enter the Row (1-" << rows << ") and Column (1-" <<  col << ") OR press 0 0 to Exit: ";
+        int r, c;
+        cin >> r >> c;
+        if (r == 0 || c == 0) {
+            break;
         }
-        if (row >= 1 && row <= 3 && col >= 1 && col <= 4){
-            if (cinema[row - 1][col - 1] == 'F'){
-                cinema[row - 1][col - 1] = 'R';
-                cout << "You have successfully reserved " << row << "-" << col << endl; 
+        if (r >= 1 && r <= rows && c >= 1 && c <= col){
+            if (cinema[r - 1][c - 1] == 'F'){
+                cinema[r - 1][c - 1] = 'R';
+                cout << "You have successfully reserved " << r << "-" << c << endl; 
             }else{
-                cout << "Seat Not Available For " << row << "-" << col << endl; 
+                cout << "Seat Not Available For " << r << "-" << c << endl; 
             }
         } else{
             cout << "Wrong Input " << endl;
         }
     }
-}
-void newmenu(){
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < col; j++) {
             cout << "(" << (i + 1) << "-" << (j + 1) << " " << cinema[i][j] << ") ";
         }
         cout << endl;
     }
-}
-int main() {
-    menu();
-    booking();
-    newmenu();
     return 0;
 }
 
